@@ -1,0 +1,42 @@
+﻿<div class="">
+    <div class="row align-items-center justify-content-center">
+        <div class="col-12 text-center">
+        
+            <h1 class="display-1">W E L C O M E</h1>
+        
+        </div>
+    </div>  
+</div>
+
+@section styles
+{
+}
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+
+            ajaxGet('Home/NotFoundException')
+                .then(function (data) {
+                })
+                .catch((error) => {
+                });
+
+            ajaxGet('Home/BadRequestException')
+                .then(function (data) {
+                })
+                .catch((error) => {
+                });
+
+            ajaxGet('Home/SystemException')
+                .then(function (data) {
+                })
+                .catch((error) => {
+                });
+
+        });
+
+    </script>
+}

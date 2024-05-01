@@ -1,0 +1,61 @@
+﻿@model ClassLibrary.Mvc.Models.ErrorViewModel
+
+<div class="row align-items-center justify-content-center">
+    <div class="col-12 text-center">
+        
+        <div>
+
+            <div class="shadow alert alert-danger text-start mt-4 mb-1" role="alert">
+                <strong>StatusCode: @Model.StatusCode.ToString() System Error</strong>
+                @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                {
+                    <br />
+                    <span>@Model.StatusMessage</span>
+                }
+            </div>
+            <p class="text-start ms-2 mt-0">
+                @if (!String.IsNullOrEmpty(Model.RequestId))
+                {
+                    <span class="disply-6 text-danger opacity-50">Request_Id: <code>@Model.RequestId</code></span>
+                }
+            </p>
+
+            @if (Model.Exception != null)
+            {
+                <div class="card">
+                    <div class="text-start">
+
+                        <p>
+                            <ul>
+                                <li><b>Exception Message:</b> @Model.Exception.Message</li>
+                                <li><b>Exception Source:</b> @Model.Exception.Source</li>
+                                <li><b>Exception StackTrace:</b><br /><span style="white-space: pre-line">@Model.Exception.StackTrace</span></li>
+                            </ul>
+
+                            @if (Model.Exception.InnerException != null)
+                            {
+                                <ul class="">
+                                    <li><b>Inner Exception Message:</b> @Model.Exception.InnerException.Message</li>
+                                    <li><b>Inner Exception Source:</b> @Model.Exception.InnerException.Source</li>
+                                    <li><b>Inner Exception StackTrace:</b><br /><span style="white-space: pre-line">@Model.Exception.InnerException.StackTrace</span></li>
+                                </ul>
+                            }
+                        </p>
+
+
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>  
+
+@section styles
+{
+}
+
+@section scripts
+{
+}
