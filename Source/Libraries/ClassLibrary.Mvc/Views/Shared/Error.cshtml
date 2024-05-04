@@ -1,12 +1,15 @@
 ﻿@model ClassLibrary.Mvc.Models.ErrorViewModel
+@{
+    string alertClass = (Model.StatusCode < 500) ? "alert-warning text-dark bg-warning bg-opacity-75 opacity-75" : "alert-danger text-light bg-danger bg-opacity-75 opacity-100";
+}
 
 <div class="row align-items-center justify-content-center">
     <div class="col-12 text-center">
         
         <div>
 
-            <div class="shadow alert alert-danger text-start mt-4 mb-1" role="alert">
-                <strong>StatusCode: @Model.StatusCode.ToString() System Error</strong>
+            <div class="shadow alert @alertClass text-start mt-4 mb-1" role="alert" aria-live="assertive">
+                <strong>Status Code: @Model.StatusCode.ToString()</strong>
                 @if (!string.IsNullOrEmpty(Model.StatusMessage))
                 {
                     <br />
@@ -16,7 +19,7 @@
             <p class="text-start ms-2 mt-0">
                 @if (!String.IsNullOrEmpty(Model.RequestId))
                 {
-                    <span class="disply-6 text-danger opacity-50">Request_Id: <code>@Model.RequestId</code></span>
+                    <small class="disply-6"><strong class="text-dark opacity-50">Request_Id: <code class="text-dark opacity-100">@Model.RequestId</code></strong></small>
                 }
             </p>
 

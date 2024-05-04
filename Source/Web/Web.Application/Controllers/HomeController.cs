@@ -10,10 +10,6 @@ namespace Web.Application.Controllers
         [HttpGet("Home/Index")]
         public IActionResult Index()
         {
-            //throw new NotFoundException($"Not Found Exception Thrown");
-            //throw new BadRequestException($"Bad Request Exception Thrown");
-            //throw new System.Exception($"Exception Thrown");
-
             return View();
         }
 
