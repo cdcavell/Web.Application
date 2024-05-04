@@ -1,9 +1,57 @@
-const toastTrigger = document.getElementById('liveToastBtn')
-const toastLiveExample = document.getElementById('errorToast')
+function showInformationToast(opts) {
 
-if (toastTrigger) {
-    const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
-    toastTrigger.addEventListener('click', () => {
-        toastBootstrap.show()
-    })
+    let toast = document.querySelector('#informationToast');
+    showToast(toast, opts);
+
+}
+
+function showSuccessToast(opts) {
+
+    let toast = document.querySelector('#successToast');
+    showToast(toast, opts);
+
+}
+
+function showWarningToast(opts) {
+
+    let toast = document.querySelector('#warningToast');
+    showToast(toast, opts);
+
+}
+
+function showErrorToast(opts) {
+
+    let toast = document.querySelector('#errorToast');
+    showToast(toast, opts);
+
+}
+
+function showToast(toast, opts) {
+
+    if (toast === null) { return false; }
+    if (toast === undefined) { return false; }
+
+    let toastClone = toast.cloneNode(true);
+    let container = document.querySelector('.toast-container');
+    container.appendChild(toastClone);
+
+    let toastHeader = toastClone ? toastClone.querySelector('.toast-header') : null;
+    let toastTitle = toastHeader ? toastHeader.querySelector('strong') : null;
+    let toastBody = toastClone ? toastClone.querySelector('.toast-body') : null;
+
+    if (!isNullOrEmpty(opts['Title'])) {
+        toastTitle.innerHTML = opts['Title'].trim();
+    }
+
+    if (!isNullOrEmpty(opts['Message'])) {
+        toastBody.innerHTML = opts['Message'];
+    }
+
+    toastClone.addEventListener('hidden.bs.toast', () => {
+        container.removeChild(toastClone);
+    });
+
+    let toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastClone);
+    toastBootstrap.show();
+
 }

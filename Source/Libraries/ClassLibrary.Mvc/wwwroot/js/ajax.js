@@ -78,13 +78,24 @@ function ajaxGet(url) {
     })
 }
 
-function ajaxError(error) {
+async function ajaxError(error) {
 
     console.error('Status Code : ' + error.responseJSON.status);
-    console.error('Status Text : ' + error.responseJSON.title);
+    console.error('Message     : ' + error.responseJSON.title);
     console.error('Detail      : ' + error.responseJSON.detail);
 
-    alert('Status Code: ' + error.responseJSON.status + '\r\nStatus Text: ' + error.responseJSON.title + '\r\nDetail: ' + error.responseJSON.detail);
+    let title = error.responseJSON.title;
+    let message = error.responseJSON.detail;
+
+    if (error.responseJSON.status < 500) {
+
+        showWarningToast({ 'Title': title, 'Message': message });
+
+    } else {
+
+        showErrorToast({ 'Title': title, 'Message': message });
+
+    }
 
 }
 

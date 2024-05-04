@@ -3,8 +3,6 @@
         <div class="col-12 text-center">
         
             <h1 class="display-1">W E L C O M E</h1>
-        
-            <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
 
         </div>
     </div>  
@@ -19,6 +17,9 @@
     <script>
 
         $(document).ready(function () {
+
+            showInformationToast({ 'Message': 'Just a little information.'});
+            showSuccessToast({ 'Message': 'Yea!!! Page Loaded.' });
 
             ajaxGet('Home/NotFoundException')
                 .then(function (data) {
