@@ -20,19 +20,22 @@ namespace Web.Application.Controllers
         [HttpGet("Home/NotFoundException")]
         public IActionResult NotFoundException()
         {
-            throw new NotFoundException($"Not Found Exception Thrown");
+            //throw new NotFoundException($"Not Found Exception Thrown");
+            return Json(Ok());
         }
 
         [HttpGet("Home/BadRequestException")]
         public IActionResult BadRequestException()
         {
-            throw new BadRequestException($"Bad Request Exception Thrown");
+            //throw new BadRequestException($"Bad Request Exception Thrown");
+            return Json(Ok());
         }
 
         [HttpGet("Home/SystemException")]
         public IActionResult SystemException()
         {
-            throw new System.Exception($"System Exception Thrown");
+            //throw new System.Exception($"System Exception Thrown");
+            return Json(Ok());
         }
     }
 }
