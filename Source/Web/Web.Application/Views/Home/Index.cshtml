@@ -18,8 +18,8 @@
 
         $(document).ready(function () {
 
-            showInformationToast({ 'Message': 'Just a little information.'});
-            showSuccessToast({ 'Message': 'Yea!!! Page Loaded.' });
+            showInformationToast({ 'Message': 'Just a little information.', 'Delay': '0' });
+            showSuccessToast({ 'Message': 'Yea!!! Page Loaded.', 'Delay': '10000' });
 
             ajaxGet('Home/NotFoundException')
                 .then(function (data) {

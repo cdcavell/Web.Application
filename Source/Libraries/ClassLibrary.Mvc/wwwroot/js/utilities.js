@@ -5,6 +5,8 @@
 
     if (typeof value === 'string' || value instanceof String) {
         if (value.trim() === '') { return true; }
+    } else {
+        return true;
     }
 
     return false;

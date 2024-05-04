@@ -31,6 +31,10 @@ function showToast(toast, opts) {
     if (toast === null) { return false; }
     if (toast === undefined) { return false; }
 
+    let title = opts['Title'];
+    let message = opts['Message'];
+    let delay = opts['Delay'];
+
     let toastClone = toast.cloneNode(true);
     let container = document.querySelector('.toast-container');
     container.appendChild(toastClone);
@@ -39,12 +43,22 @@ function showToast(toast, opts) {
     let toastTitle = toastHeader ? toastHeader.querySelector('strong') : null;
     let toastBody = toastClone ? toastClone.querySelector('.toast-body') : null;
 
-    if (!isNullOrEmpty(opts['Title'])) {
-        toastTitle.innerHTML = opts['Title'].trim();
+    if (!isNullOrEmpty(title)) {
+        toastTitle.innerHTML = title.trim();
     }
 
-    if (!isNullOrEmpty(opts['Message'])) {
-        toastBody.innerHTML = opts['Message'];
+    if (!isNullOrEmpty(message)) {
+        toastBody.innerHTML = message;
+    }
+
+    if (!isNullOrEmpty(delay)) {
+        if (!isNaN(parseFloat(delay.trim()))) {
+            if (delay.trim() === '0') {
+                toastClone.dataset.bsAutohide = false;
+            } else {
+                toastClone.dataset.bsDelay = delay;
+            }
+        }
     }
 
     toastClone.addEventListener('hidden.bs.toast', () => {
