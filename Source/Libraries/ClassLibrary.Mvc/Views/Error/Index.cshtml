@@ -1,6 +1,12 @@
 ﻿@model ClassLibrary.Mvc.Models.ErrorViewModel
+@using ClassLibrary.Mvc.Http;
 @{
     string alertClass = ((Model.StatusCode < 500) && (Model.StatusCode != 401)) ? "alert-warning text-dark bg-warning bg-opacity-75 opacity-75" : "alert-danger text-light bg-danger bg-opacity-75 opacity-100";
+    KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(Model.StatusCode);
+
+    string statusMessage = Model.StatusMessage.Trim();
+    if (string.IsNullOrEmpty(statusMessage))
+        statusMessage = kvp.Value;
 }
 
 <div class="row align-items-center justify-content-center">
@@ -10,10 +16,10 @@
 
             <div class="shadow alert @alertClass text-start mt-4 mb-1" role="alert" aria-live="assertive">
                 <strong>Status Code: @Model.StatusCode.ToString()</strong>
-                @if (!string.IsNullOrEmpty(Model.StatusMessage))
+                @if (!string.IsNullOrEmpty(statusMessage))
                 {
                     <br />
-                    <span>@Model.StatusMessage</span>
+                    <span>@statusMessage</span>
                 }
             </div>
             <p class="text-start ms-2 mt-0">

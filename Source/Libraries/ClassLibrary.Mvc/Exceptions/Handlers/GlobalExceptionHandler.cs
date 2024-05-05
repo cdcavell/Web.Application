@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.Mvc.Extensions;
+using ClassLibrary.Mvc.Http;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,8 +19,14 @@ namespace ClassLibrary.Mvc.Exceptions.Handlers
             {
                 Status = StatusCodes.Status500InternalServerError,
                 Title = "Server Error",
-                Detail = exception.Message
+                Detail = exception.Message.Trim()
             };
+
+            if (string.IsNullOrEmpty(problemDetails.Detail))
+            {
+                KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(problemDetails.Status.Value);
+                problemDetails.Detail = kvp.Value.Trim();
+            }
 
             httpContext.Response.StatusCode = problemDetails.Status.Value;
 

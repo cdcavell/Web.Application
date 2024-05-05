@@ -1,4 +1,5 @@
-﻿using ClassLibrary.Mvc.Http;
+﻿using ClassLibrary.Mvc.Exceptions;
+using ClassLibrary.Mvc.Http;
 using ClassLibrary.Mvc.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -25,13 +26,31 @@ namespace ClassLibrary.Mvc.Controllers
 
             ErrorViewModel viewModel = new()
             {
-                RequestId = requestId,
+                RequestId = requestId.Trim(),
                 StatusCode = kvp.Key,
-                StatusMessage = kvp.Value,
+                StatusMessage = kvp.Value.Trim(),
                 Exception = exceptionHandlerPathFeature?.Error
             };
 
             return View(viewModel);
+        }
+
+        [HttpGet("Status/{id?}")]
+        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Status(int id)
+        {
+            if (!HttpContext.Response.Headers.ContainsKey("X-Robots-Tag"))
+                HttpContext.Response.Headers.Append("X-Robots-Tag", "noindex");
+
+            KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(id);
+
+            throw kvp.Key switch
+            {
+                StatusCodes.Status400BadRequest => new BadHttpRequestException($"{kvp.Value}"),
+                StatusCodes.Status401Unauthorized => new UnauthorizedAccessException($"{kvp.Value}"),
+                StatusCodes.Status404NotFound => new NotFoundException($"{kvp.Value}"),
+                _ => new Exception($"Unhandled Status Code: {id}"),
+            };
         }
     }
 }

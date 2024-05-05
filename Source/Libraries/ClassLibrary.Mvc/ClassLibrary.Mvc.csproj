@@ -7,8 +7,20 @@
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
   </PropertyGroup>
 
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+    <Content Remove="wwwroot\js\ajax.js" />
+    <Content Remove="wwwroot\js\toasts.js" />
+    <Content Remove="wwwroot\js\utilities.js" />
+  </ItemGroup>
+
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <None Include="wwwroot\js\ajax.js" />
+    <None Include="wwwroot\js\toasts.js" />
+    <None Include="wwwroot\js\utilities.js" />
   </ItemGroup>
 
   <ItemGroup>

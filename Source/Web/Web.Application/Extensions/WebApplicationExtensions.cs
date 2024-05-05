@@ -29,7 +29,7 @@ namespace Web.Application.Extensions
 
             // Exception Handlers are called in the order they are registered
             builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
-            builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+            builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
             builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddProblemDetails();
@@ -51,6 +51,15 @@ namespace Web.Application.Extensions
 
             app.UseResponseCaching();
             app.UseExceptionHandler("/Error/500");
+            app.UseStatusCodePages(subApp =>
+            {
+                subApp.Run(async context =>
+                {
+                    int statusCode = context.Response.StatusCode;
+                    context.Response.Redirect($"/Status/{statusCode}");
+                    await context.Response.StartAsync().ConfigureAwait(false);
+                });
+            });
 
             app.UseRouting();
             app.UseAuthentication();

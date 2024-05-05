@@ -9,7 +9,7 @@ namespace Web.Application.Controllers
         [HttpGet("Account/Login")]
         public IActionResult Login()
         {
-            throw new UnauthorizedAccessException($"Unauthorized Access Exception Thrown");
+            return Unauthorized();
         }
     }
 }

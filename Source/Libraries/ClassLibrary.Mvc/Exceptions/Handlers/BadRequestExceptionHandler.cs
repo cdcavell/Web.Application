@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.Mvc.Extensions;
+using ClassLibrary.Mvc.Http;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -7,13 +8,13 @@ using System.Net.Http.Headers;
 
 namespace ClassLibrary.Mvc.Exceptions.Handlers
 {
-    public sealed class BadRequestExceptionHandler(ILogger<BadRequestExceptionHandler> logger) : IExceptionHandler
+    public sealed class BadHttpRequestExceptionHandler(ILogger<BadHttpRequestExceptionHandler> logger) : IExceptionHandler
     {
-        private readonly ILogger<BadRequestExceptionHandler> _logger = logger;
+        private readonly ILogger<BadHttpRequestExceptionHandler> _logger = logger;
 
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, System.Exception exception, CancellationToken cancellationToken)
         {
-            if (exception is not BadRequestException badRequestException)
+            if (exception is not BadHttpRequestException badHttpRequestException)
                 return false;
 
             _logger.LogWarning(exception, "{@logMessageHeader} Exception Occurred: {@message}", httpContext.Request.LogMessageHeader(), exception.Message);
@@ -22,8 +23,14 @@ namespace ClassLibrary.Mvc.Exceptions.Handlers
             {
                 Status = StatusCodes.Status400BadRequest,
                 Title = "Bad Request",
-                Detail = badRequestException.Message
+                Detail = badHttpRequestException.Message.Trim()
             };
+
+            if (string.IsNullOrEmpty(problemDetails.Detail))
+            {
+                KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(problemDetails.Status.Value);
+                problemDetails.Detail = kvp.Value.Trim();
+            }
 
             httpContext.Response.StatusCode = problemDetails.Status.Value;
 

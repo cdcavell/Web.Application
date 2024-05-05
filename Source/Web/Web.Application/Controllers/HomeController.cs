@@ -14,16 +14,10 @@ namespace Web.Application.Controllers
             return View();
         }
 
-        [HttpGet("Home/NotFoundException")]
-        public IActionResult NotFoundException()
-        {
-            throw new NotFoundException($"Not Found Exception Thrown");
-        }
-
         [HttpGet("Home/BadRequestException")]
         public IActionResult BadRequestException()
         {
-            throw new BadRequestException($"Bad Request Exception Thrown");
+            return BadRequest();
         }
 
         [Authorize]
