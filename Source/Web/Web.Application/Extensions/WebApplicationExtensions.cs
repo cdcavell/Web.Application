@@ -29,6 +29,7 @@ namespace Web.Application.Extensions
 
             // Exception Handlers are called in the order they are registered
             builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+            builder.Services.AddExceptionHandler<ArgumentExceptionHandler>();
             builder.Services.AddExceptionHandler<BadHttpRequestExceptionHandler>();
             builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();

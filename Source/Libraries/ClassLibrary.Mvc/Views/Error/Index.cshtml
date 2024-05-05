@@ -19,7 +19,7 @@
                 @if (!string.IsNullOrEmpty(statusMessage))
                 {
                     <br />
-                    <span>@statusMessage</span>
+                    <span>@Html.Raw(statusMessage)</span>
                 }
             </div>
             <p class="text-start ms-2 mt-0">

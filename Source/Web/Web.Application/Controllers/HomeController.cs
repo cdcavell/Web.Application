@@ -1,6 +1,6 @@
-﻿using ClassLibrary.Mvc.Exceptions;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Web.Application.Models.Home;
 
 namespace Web.Application.Controllers
 {
@@ -18,6 +18,15 @@ namespace Web.Application.Controllers
         public IActionResult BadRequestException()
         {
             return BadRequest();
+        }
+
+        [HttpGet("Home/InvalidModelStateException")]
+        public IActionResult InvalidModelStateException([Bind(InputModel.BindProperties)] InputModel model)
+        {
+            if (!ModelState.IsValid)
+                return InvalidModelState();
+
+            return NoContent();
         }
 
         [Authorize]

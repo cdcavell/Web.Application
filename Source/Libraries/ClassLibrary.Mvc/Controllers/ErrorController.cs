@@ -20,15 +20,33 @@ namespace ClassLibrary.Mvc.Controllers
                 HttpContext.Response.Headers.Append("X-Robots-Tag", "noindex");
 
             string requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
+
             KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(id);
             var exceptionHandlerPathFeature =
                 HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
+            int statusCode = kvp.Key;
+            string statusMessage = kvp.Value.Trim();
+
+            if (exceptionHandlerPathFeature != null)
+            {
+                if (exceptionHandlerPathFeature.Error.Message.Contains("Invalid Model State", StringComparison.OrdinalIgnoreCase))
+                {
+                    statusCode = 400;
+                    statusMessage = exceptionHandlerPathFeature?.Error.Message.Trim() ?? kvp.Value.Trim();
+                    exceptionHandlerPathFeature = null;
+                }
+                else
+                {
+                    statusMessage = exceptionHandlerPathFeature?.Error.Message.Trim() ?? kvp.Value.Trim();
+                }
+            }
+
             ErrorViewModel viewModel = new()
             {
                 RequestId = requestId.Trim(),
-                StatusCode = kvp.Key,
-                StatusMessage = kvp.Value.Trim(),
+                StatusCode = statusCode,
+                StatusMessage = statusMessage,
                 Exception = exceptionHandlerPathFeature?.Error
             };
 

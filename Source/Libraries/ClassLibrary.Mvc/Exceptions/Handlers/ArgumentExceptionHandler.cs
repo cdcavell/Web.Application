@@ -7,23 +7,22 @@ using Microsoft.Extensions.Logging;
 
 namespace ClassLibrary.Mvc.Exceptions.Handlers
 {
-    public sealed class GlobalExceptionHandler(ILogger<GlobalExceptionHandler> logger) : IExceptionHandler
+    public sealed class ArgumentExceptionHandler(ILogger<ArgumentExceptionHandler> logger) : IExceptionHandler
     {
-        private readonly ILogger<GlobalExceptionHandler> _logger = logger;
+        private readonly ILogger<ArgumentExceptionHandler> _logger = logger;
 
         public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, System.Exception exception, CancellationToken cancellationToken)
         {
-            // ArgumentException already handled so ignore
-            if (exception is ArgumentException argumentException)
-                return false; 
+            if (exception is not ArgumentException argumentException)
+                return false;
 
-            _logger.LogError(exception, "{@logMessageHeader} Exception Occurred: {@message}", httpContext.Request.LogMessageHeader(), exception.Message);
+            _logger.LogWarning(exception, "{@logMessageHeader} Exception Occurred: {@message}", httpContext.Request.LogMessageHeader(), exception.Message);
 
             var problemDetails = new ProblemDetails
             {
-                Status = StatusCodes.Status500InternalServerError,
-                Title = "Server Error",
-                Detail = exception.Message.Trim()
+                Status = StatusCodes.Status400BadRequest,
+                Title = "Invalid Argument",
+                Detail = argumentException.Message.Trim()
             };
 
             if (string.IsNullOrEmpty(problemDetails.Detail))
@@ -35,10 +34,10 @@ namespace ClassLibrary.Mvc.Exceptions.Handlers
             httpContext.Response.StatusCode = problemDetails.Status.Value;
 
             if (httpContext.Request.IsAjaxRequest())
-            {
+            { 
                 await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken).ConfigureAwait(false);
                 return true;
-            }
+            } 
 
             return false;
         }

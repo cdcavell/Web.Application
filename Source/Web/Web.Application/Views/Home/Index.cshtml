@@ -6,6 +6,7 @@
 
             <div class="d-flex justify-content-center m-3 p-3">
                 <a type="button" class="btn btn-sm btn-warning opacity-75 mx-1" href="~/Home/NotFoundException">Not Found Button</a>
+                <a type="button" class="btn btn-sm btn-warning opacity-75 mx-1" href="~/Home/InvalidModelStateException">Invalid Model State Button</a>
                 <a type="button" class="btn btn-sm btn-warning opacity-75 mx-1" href="~/Home/BadRequestException">Bad Request Button</a>
                 <a type="button" class="btn btn-sm btn-danger opacity-75 mx-1" href="~/Home/UnauthorizedAccessException">Unauthorized Access Button</a>
                 <a type="button" class="btn btn-sm btn-danger opacity-75 mx-1" href="~/Home/SystemException">System Exception Button</a>
@@ -35,6 +36,12 @@
                 });
 
             ajaxGet('Home/BadRequestException')
+                .then(function (data) {
+                })
+                .catch((error) => {
+                });
+
+            ajaxGet('Home/InvalidModelStateException')
                 .then(function (data) {
                 })
                 .catch((error) => {
