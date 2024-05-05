@@ -26,29 +26,5 @@ namespace ClassLibrary.Mvc.Controllers
             base.OnActionExecuted(context);
             _logger.LogDebug("{@logMessageHeader} OnActionExecuted({@context})", Request.LogMessageHeader(), nameof(context));
         }
-
-
-        [HttpGet("/Error/{id?}")]
-        [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error(int id)
-        {
-            if (!HttpContext.Response.Headers.ContainsKey("X-Robots-Tag"))
-                HttpContext.Response.Headers.Append("X-Robots-Tag", "noindex");
-
-            string requestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier;
-            KeyValuePair<int, string> kvp = StatusCodeDefinitions.GetCodeDefinition(id);
-            var exceptionHandlerPathFeature =
-                HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-
-            ErrorViewModel viewModel = new()
-            {
-                RequestId = requestId,
-                StatusCode = kvp.Key,
-                StatusMessage = kvp.Value,
-                Exception = exceptionHandlerPathFeature?.Error
-            };
-
-            return View(viewModel);
-        }
     }
 }

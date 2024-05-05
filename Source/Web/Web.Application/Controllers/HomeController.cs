@@ -1,4 +1,5 @@
 ﻿using ClassLibrary.Mvc.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Web.Application.Controllers
@@ -23,6 +24,13 @@ namespace Web.Application.Controllers
         public IActionResult BadRequestException()
         {
             throw new BadRequestException($"Bad Request Exception Thrown");
+        }
+
+        [Authorize]
+        [HttpGet("Home/UnauthorizedAccessException")]
+        public IActionResult UnauthorizedAccessException()
+        {
+            return NoContent();
         }
 
         [HttpGet("Home/SystemException")]

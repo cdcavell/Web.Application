@@ -12,6 +12,7 @@ namespace ClassLibrary.Mvc.Http
             if (_StatusCodeList.Count == 0)
             {
                 _StatusCodeList.Add(new KeyValuePair<int, string>(400, "Bad Request - The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."));
+                _StatusCodeList.Add(new KeyValuePair<int, string>(401, "Unauthorized - The request requires user authentication."));
                 _StatusCodeList.Add(new KeyValuePair<int, string>(404, "Not Found - The server has not found anything matching the Request-URI. No indication is given of whether the condition is temporary or permanent."));
                 _StatusCodeList.Add(new KeyValuePair<int, string>(500, "Internal Server Error - The server encountered an unexpected condition which prevented it from fulfilling the request."));
             }

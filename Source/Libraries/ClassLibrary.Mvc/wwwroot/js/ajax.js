@@ -80,20 +80,34 @@ function ajaxGet(url) {
 
 async function ajaxError(error) {
 
-    console.error('Status Code : ' + error.responseJSON.status);
-    console.error('Message     : ' + error.responseJSON.title);
-    console.error('Detail      : ' + error.responseJSON.detail);
+    let statusCode = error.status;
+    let title = error.statusText;
+    let detail = error.responseText;
 
-    let title = error.responseJSON.title;
-    let message = error.responseJSON.detail;
+    if (statusCode === 401) {
+        title = 'Unauthorized';
+        detail = 'The request requires user authentication.';
+    }
 
-    if (error.responseJSON.status < 500) {
+    if (error.responseJSON != null && error.responseJSON != undefined) {
 
-        showWarningToast({ 'Title': title, 'Message': message });
+        statusCode = error.responseJSON.status;
+        title = error.responseJSON.title;
+        detail = error.responseJSON.detail;
+
+    }
+
+    console.error('Status Code : ' + statusCode);
+    console.error('Message     : ' + title);
+    console.error('Detail      : ' + detail);
+
+    if ((statusCode < 500) && (statusCode != 401)) {
+
+        showWarningToast({ 'Title': title, 'Message': detail });
 
     } else {
 
-        showErrorToast({ 'Title': title, 'Message': message });
+        showErrorToast({ 'Title': title, 'Message': detail });
 
     }
 

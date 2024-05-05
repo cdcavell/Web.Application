@@ -1,7 +1,8 @@
 ﻿using ClassLibrary.Mvc.Exceptions.Handlers;
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
-using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
+using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
 
@@ -27,10 +28,14 @@ namespace Web.Application.Extensions
             builder.Services.AddResponseCaching();
 
             // Exception Handlers are called in the order they are registered
-            builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
             builder.Services.AddExceptionHandler<NotFoundExceptionHandler>();
+            builder.Services.AddExceptionHandler<BadRequestExceptionHandler>();
+            builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddProblemDetails();
+
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
 
             return builder.Build();
         }
