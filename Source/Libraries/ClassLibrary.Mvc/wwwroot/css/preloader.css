@@ -1,0 +1,68 @@
+﻿.preloader {
+    background-color: #0e0e0e;
+    opacity: 0.8;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+    .preloader .preloader-block {
+        -webkit-transform: translate(50%, 50%);
+        bottom: 50%;
+        position: fixed;
+        right: 50%;
+        transform: translate(50%, 50%);
+        z-index: 3000;
+    }
+
+        .preloader .preloader-block .preloader-icon .loading-dot {
+            background-color: #fff;
+            border-radius: 50%;
+            display: inline-block;
+            height: 13px;
+            width: 13px;
+        }
+
+            .preloader .preloader-block .preloader-icon .loading-dot.loading-dot-1 {
+                -webkit-animation: 1.2s grow ease-in-out infinite;
+                animation: 1.2s grow ease-in-out infinite;
+            }
+
+            .preloader .preloader-block .preloader-icon .loading-dot.loading-dot-2 {
+                -webkit-animation: 1.2s grow ease-in-out infinite 0.15555s;
+                animation: 1.2s grow ease-in-out infinite 0.15555s;
+                margin: 0 14px;
+            }
+
+            .preloader .preloader-block .preloader-icon .loading-dot.loading-dot-3 {
+                -webkit-animation: 1.2s grow ease-in-out infinite 0.3s;
+                animation: 1.2s grow ease-in-out infinite 0.3s;
+            }
+
+@-webkit-keyframes grow {
+
+    0%, 40%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes grow {
+
+    0%, 40%, 100% {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+
+    40% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}

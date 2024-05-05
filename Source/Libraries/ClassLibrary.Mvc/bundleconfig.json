@@ -1,5 +1,11 @@
 [
   {
+    "outputFileName": "wwwroot/css/common.min.css",
+    "inputFiles": [
+      "wwwroot/css/!(*.min).css"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/js/common.min.js",
     "inputFiles": [
       "wwwroot/js/!(*.min).js"

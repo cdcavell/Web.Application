@@ -10,6 +10,9 @@
  */
 
 function ajaxPost(url, token, model) {
+
+    wait();
+
     return new Promise((resolve, reject) => {
         console.debug('-- AJax POST: ' + url + ' token: ' + token);
         console.debug(model);
@@ -31,6 +34,7 @@ function ajaxPost(url, token, model) {
             },
             complete: function () {
                 console.debug('-- AJax Complete');
+                noWait();
             },
             error: function (error) {
                 console.debug('-- AJax Error');
@@ -53,6 +57,9 @@ function ajaxPost(url, token, model) {
  *     });
  */
 function ajaxGet(url) {
+
+    wait();
+
     return new Promise((resolve, reject) => {
         console.debug('-- AJax GET: ' + url);
         $.ajax({
@@ -68,6 +75,7 @@ function ajaxGet(url) {
             },
             complete: function () {
                 console.debug('-- AJax Complete');
+                noWait();
             },
             error: function (error) {
                 console.debug('-- AJax Error');

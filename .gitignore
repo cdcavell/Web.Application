@@ -19,6 +19,7 @@
 *.userprefs
 
 # BundleArtifacts
+*.min.css
 *.min.js
 
 # Build results
