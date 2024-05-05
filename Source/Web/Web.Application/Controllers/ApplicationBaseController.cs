@@ -9,10 +9,7 @@ using System.Diagnostics;
 
 namespace Web.Application.Controllers
 {
-    public abstract class ApplicationBaseController<T> : WebBaseController<ApplicationBaseController<T>> where T : ApplicationBaseController<T>
+    public abstract class ApplicationBaseController<T>(ILogger<T> logger) : WebBaseController<ApplicationBaseController<T>>(logger) where T : ApplicationBaseController<T>
     {
-        public ApplicationBaseController(ILogger<T> logger) : base(logger) 
-        {
-        }
     }
 }
