@@ -1,5 +1,5 @@
 ﻿.preloader {
-    background-color: #0e0e0e;
+    background-color: #fefefe;
     opacity: 0.8;
     height: 100%;
     position: fixed;
@@ -18,7 +18,7 @@
     }
 
         .preloader .preloader-block .preloader-icon .loading-dot {
-            background-color: #fff;
+            background-color: #000;
             border-radius: 50%;
             display: inline-block;
             height: 13px;
