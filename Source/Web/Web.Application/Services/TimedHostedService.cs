@@ -3,19 +3,14 @@ using ClassLibrary.Mvc.Extensions;
 
 namespace Web.Application.Services
 {
-    public sealed class TimedHostedService : IHostedService, IDisposable
+    public sealed class TimedHostedService(ILogger<TimedHostedService> logger) : IHostedService, IAsyncDisposable
     {
         const string _logMessageHeader = "[Hosted Service]: TimedHostedService";
 
-        private readonly ILogger<TimedHostedService> _logger;
+        private readonly ILogger<TimedHostedService> _logger = logger;
 
         private Timer? _timer = null;
         private bool serviceRunning = false;
- 
-        public TimedHostedService(ILogger<TimedHostedService> logger)
-        {
-            _logger = logger;
-        }
 
         public bool ServiceRunning { get { return serviceRunning; } }
 
@@ -44,10 +39,16 @@ namespace Web.Application.Services
 
             return Task.CompletedTask;
         }
-        public void Dispose()
+
+        public async ValueTask DisposeAsync()
         {
+            if (_timer is IAsyncDisposable timer)
+            {
+                await timer.DisposeAsync();
+            }
+
             _logger.LogInformation("{@logMessageHeader} [Action]: Dispose - Timed Hosted Service is disposed.", _logMessageHeader);
-            _timer?.Dispose();
+            _timer = null;
         }
 
         private void DoWork(object? state)

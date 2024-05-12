@@ -1,4 +1,7 @@
 ﻿@inject Web.Application.Services.TimedHostedService timedHostService
+@{
+    bool timedServiceRunning = timedHostService.ServiceRunning;
+}
 
 <div class="container-fluid">
     <div class="row align-items-center justify-content-center">
@@ -15,7 +18,7 @@
             </div>
 
             <div class="d-flex justify-content-center m-3 p-3">
-                @if (timedHostService.ServiceRunning)
+                @if (timedServiceRunning)
                 {
                     <a type="button" class="btn btn-sm btn-danger opacity-75 mx-1" href="~/Home/StopHostedService">Stop Hosted Service Button</a>
                 }
@@ -29,7 +32,7 @@
     </div>  
 </div>
 
-<input type="hidden" id="timedHostServiceRunning" name="timedHostServiceRunning" value="@timedHostService.ServiceRunning.ToString()" />
+<input type="hidden" id="timedHostServiceRunning" name="timedHostServiceRunning" value="@timedServiceRunning.ToString()" />
 
 @section styles
 {
