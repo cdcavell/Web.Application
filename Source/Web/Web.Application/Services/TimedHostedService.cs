@@ -3,7 +3,7 @@ using ClassLibrary.Mvc.Extensions;
 
 namespace Web.Application.Services
 {
-    public class TimedHostedService : IHostedService, IDisposable
+    public sealed class TimedHostedService : IHostedService, IDisposable
     {
         const string _logMessageHeader = "[Hosted Service]: TimedHostedService";
 
