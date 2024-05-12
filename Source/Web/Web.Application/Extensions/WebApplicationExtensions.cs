@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption;
 using Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel;
 using Microsoft.AspNetCore.HttpOverrides;
 using Serilog;
+using Web.Application.Services;
 
 namespace Web.Application.Extensions
 {
@@ -34,6 +35,10 @@ namespace Web.Application.Extensions
             builder.Services.AddExceptionHandler<UnauthorizedAccessExceptionHandler>();
             builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
             builder.Services.AddProblemDetails();
+
+            // Hosted Service
+            builder.Services.AddSingleton<TimedHostedService>();
+            builder.Services.AddHostedService(p => p.GetRequiredService<TimedHostedService>());
 
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();

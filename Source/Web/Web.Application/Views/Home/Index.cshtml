@@ -1,4 +1,6 @@
-﻿<div class="container-fluid">
+﻿@inject Web.Application.Services.TimedHostedService timedHostService
+
+<div class="container-fluid">
     <div class="row align-items-center justify-content-center">
         <div class="col-12 text-center">
         
@@ -12,9 +14,22 @@
                 <a type="button" class="btn btn-sm btn-danger opacity-75 mx-1" href="~/Home/SystemException">System Exception Button</a>
             </div>
 
+            <div class="d-flex justify-content-center m-3 p-3">
+                @if (timedHostService.ServiceRunning)
+                {
+                    <a type="button" class="btn btn-sm btn-danger opacity-75 mx-1" href="~/Home/StopHostedService">Stop Hosted Service Button</a>
+                }
+                else
+                {
+                    <a type="button" class="btn btn-sm btn-success opacity-75 mx-1" href="~/Home/StartHostedService">Start Hosted Service Button</a>
+                }
+            </div>
+
         </div>
     </div>  
 </div>
+
+<input type="hidden" id="timedHostServiceRunning" name="timedHostServiceRunning" value="@timedHostService.ServiceRunning.ToString()" />
 
 @section styles
 {
@@ -26,8 +41,11 @@
 
         $(document).ready(function () {
 
-            showInformationToast({ 'Message': 'Just a little information.', 'Delay': '0' });
-            showSuccessToast({ 'Message': 'Yea!!! Page Loaded.', 'Delay': '10000' });
+            if ($('#timedHostServiceRunning').val().toLowerCase() === 'true') {
+                showSuccessToast({ 'Message': 'Timed Host Service is running.', 'Delay': '10000' });
+            } else {
+                showInformationToast({ 'Message': 'Timed Host Service is stopped.', 'Delay': '10000' });
+            }
 
             ajaxGet('Home/NotFoundException')
                 .then(function (data) {
