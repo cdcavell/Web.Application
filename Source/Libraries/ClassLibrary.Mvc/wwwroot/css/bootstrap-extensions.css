@@ -1,0 +1,17 @@
+﻿:root {
+    --bse-font-sans-serif: Arial, sans-serif;
+    --bse-font-monospace: "Courier New", monospace;
+    --bs-body-font-family: var(--bse-font-sans-serif);
+}
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    color: var(--bs-body-color);
+    background: linear-gradient( rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.3) );
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
