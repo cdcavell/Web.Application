@@ -26,6 +26,7 @@ DEALINGS IN THE SOFTWARE.
 
 
 The above asset(s) are under Public Domain:
+
 The [public domain (PD)](https://en.wikipedia.org/wiki/Public_domain) 
 consists of all the creative work to which no exclusive intellectual property rights apply. 
 Those rights may have expired, been forfeited, expressly waived, or may be inapplicable. 
