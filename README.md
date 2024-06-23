@@ -15,6 +15,6 @@ Developed and built in a Windows environment utilizing
 
 **_This work is [licensed](https://github.com/cdcavell/Web.Application/blob/main/LICENSE) under the
 [MIT License](https://opensource.org/licenses/MIT). Assets are licensed under their respective
-[licensing](https://github.com/cdcavell/Web.Application/blob/main/ASSETS-LICENSES.md)_**
+[licensing](https://github.com/cdcavell/Web.Application/blob/main/ASSETS-LICENSES.md)._**
 
 <hr />
