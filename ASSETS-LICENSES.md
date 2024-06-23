@@ -1,6 +1,6 @@
 - [jQuery](https://github.com/jquery/jquery)
 - [Bootstrap](https://github.com/twbs/bootstrap)
-- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3) 
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) 
 
 ```
 The above asset(s) are under MIT/ISC license:
