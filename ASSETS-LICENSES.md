@@ -2,8 +2,9 @@
 - [Bootstrap](https://github.com/twbs/bootstrap)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json) 
 
-```
+
 The above asset(s) are under MIT/ISC license:
+```
 Permission is hereby granted, free of charge, to any person obtaining a copy of this 
 software and associated documentation files (the "Software"), to deal in the Software 
 without restriction, including without limitation the rights to use, copy, modify, 
@@ -23,11 +24,10 @@ DEALINGS IN THE SOFTWARE.
 
 - [SQLite](https://www.sqlite.org/copyright.html)
 
-```
+
 The above asset(s) are under Public Domain:
 The [public domain (PD)](https://en.wikipedia.org/wiki/Public_domain) 
 consists of all the creative work to which no exclusive intellectual property rights apply. 
 Those rights may have expired, been forfeited, expressly waived, or may be inapplicable. 
 Because no one holds the exclusive rights, anyone can legally use or reference those works 
 without permission.
-```
