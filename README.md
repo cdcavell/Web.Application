@@ -12,9 +12,31 @@
 Target Framework is [ASP.NET Core 8.0](https://dotnet.microsoft.com/download/dotnet/8.0). 
 Developed and built in a Windows environment utilizing 
 [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/) source-code editor. 
+Target Database is [SQLite](https://www.sqlite.org/).
 
 **_This work is [licensed](https://github.com/cdcavell/Web.Application/blob/main/LICENSE) under the
 [MIT License](https://opensource.org/licenses/MIT). Assets are licensed under their respective
 [licensing](https://github.com/cdcavell/Web.Application/blob/main/ASSETS-LICENSES.md)._**
+
+<hr />
+
+__Database Migrations CLI Instructions__
+<br />
+_Before you can use the CLI tools on project, you'll need to add the `Microsoft.EntityFrameworkCore.Design` package to it._
+<br />
+<br />_Install EF Core Tools:_ `dotnet tool install --global dotnet-ef`
+<br />_Upgrade EF Core Tools:_ `dotnet tool update --global dotnet-ef`
+
+_To Initialize:_
+
+```
+$ dotnet ef migrations add Initial --context ApplicationDbContext --output-dir Migrations
+```
+
+_To Update:_
+
+```
+$ dotnet ef migrations add Update --context ApplicationDbContext_YYMMDD --output-dir Migrations
+```
 
 <hr />

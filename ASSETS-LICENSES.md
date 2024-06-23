@@ -1,5 +1,6 @@
- - [jQuery](https://github.com/jquery/jquery)
- - [Bootstrap](https://github.com/twbs/bootstrap)
+- [jQuery](https://github.com/jquery/jquery)
+- [Bootstrap](https://github.com/twbs/bootstrap)
+- [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/13.0.3#show-readme-container) 
 
 ```
 The above asset(s) are under MIT/ISC license:
@@ -18,4 +19,15 @@ PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS 
 FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER 
 DEALINGS IN THE SOFTWARE.
+```
+
+- [SQLite](https://www.sqlite.org/copyright.html)
+
+```
+The above asset(s) are under Public Domain:
+The [public domain (PD)](https://en.wikipedia.org/wiki/Public_domain) 
+consists of all the creative work to which no exclusive intellectual property rights apply. 
+Those rights may have expired, been forfeited, expressly waived, or may be inapplicable. 
+Because no one holds the exclusive rights, anyone can legally use or reference those works 
+without permission.
 ```
