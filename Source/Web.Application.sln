@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.Application", "Web\Web.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{80496F34-CC84-4322-8742-A48E4FF780C1}"
 	ProjectSection(SolutionItems) = preProject
+		..\ASSETS-LICENSES.md = ..\ASSETS-LICENSES.md
 		..\LICENSE = ..\LICENSE
 		..\README.md = ..\README.md
 	EndProjectSection
