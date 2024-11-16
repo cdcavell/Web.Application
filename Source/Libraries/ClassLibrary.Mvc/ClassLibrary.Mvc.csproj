@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
@@ -10,28 +10,10 @@
 	<ItemGroup>
 		<FrameworkReference Include="Microsoft.AspNetCore.App" />
 	</ItemGroup>
-
-	<ItemGroup>
-    <Content Remove="wwwroot\js\ajax.js" />
-    <Content Remove="wwwroot\js\toasts.js" />
-    <Content Remove="wwwroot\js\utilities.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\js\ajax.js" />
-    <None Include="wwwroot\js\toasts.js" />
-    <None Include="wwwroot\js\utilities.js" />
-  </ItemGroup>
-
+	
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Update="wwwroot\js\common.min.js">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
 
