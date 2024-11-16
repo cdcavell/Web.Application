@@ -1,5 +1,5 @@
 ﻿# Web.Application
-## ASP.NET Core 8.0 MVC Web Development
+## ASP.NET Core 9.0 MVC Web Development
 
 <hr />
 
@@ -9,7 +9,7 @@
 
 <hr />
 
-Target Framework is [ASP.NET Core 8.0](https://dotnet.microsoft.com/download/dotnet/8.0). 
+Target Framework is [ASP.NET Core 9.0](https://dotnet.microsoft.com/download/dotnet/9.0). 
 Developed and built in a Windows environment utilizing 
 [Visual Studio Community 2022](https://visualstudio.microsoft.com/vs/) source-code editor. 
 Target Database is [SQLite](https://www.sqlite.org/).
@@ -36,7 +36,7 @@ $ dotnet ef migrations add Initial --context ApplicationDbContext --output-dir M
 _To Update:_
 
 ```
-$ dotnet ef migrations add Update --context ApplicationDbContext_YYMMDD --output-dir Migrations
+$ dotnet ef migrations add Update_YYYYMMDD --context ApplicationDbContext --output-dir Migrations
 ```
 
 <hr />
