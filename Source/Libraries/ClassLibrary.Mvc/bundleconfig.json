@@ -1,14 +1,14 @@
 [
   {
-    "outputFileName": "/wwwroot/css/common.min.css",
+    "outputFileName": "wwwroot/css/common.min.css",
     "inputFiles": [
-      "/wwwroot/css/!(*.min).css"
+      "wwwroot/css/!(*.min).css"
     ]
   },
   {
-    "outputFileName": "/wwwroot/js/common.min.js",
+    "outputFileName": "wwwroot/js/common.min.js",
     "inputFiles": [
-      "/wwwroot/js/!(*.min).js"
+      "wwwroot/js/!(*.min).js"
     ],
     "minify": {
       "enabled": true,
