@@ -16,6 +16,10 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
-
+  <PropertyGroup>
+	<PrepareForBuildDependsOn>
+		BundleMinify;$(PrepareForBuildDependsOn)
+	</PrepareForBuildDependsOn>
+  </PropertyGroup>
 
 </Project>
